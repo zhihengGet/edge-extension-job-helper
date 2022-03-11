@@ -1,0 +1,53 @@
+{
+  "name": "Track  Career",
+  "description": "An simple extension that allows you to keep track of your career applications!",
+  "version": "1.5",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "256": "/images/256.png"
+    }
+  },
+
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab",
+    "downloads",
+    "notifications",
+    "tabs"
+  ],
+  "icons": {
+    "256": "/images/256.png"
+  },
+  "commands": {
+    "reload": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Q",
+        "mac": "Command+Shift+Q"
+      },
+      "description": "reload extension"
+    },
+    "add_page": {
+      "suggested_key": {
+        "windows": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X",
+        "chromeos": "Ctrl+Shift+X",
+        "linux": "Ctrl+Shift+X"
+      },
+      "description": "add curr page"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["extractSite.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "host_permissions": ["http://*/*", "https://*/*"]
+}
